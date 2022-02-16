@@ -50,18 +50,20 @@ namespace Datas
             Console.WriteLine(formatada11);
 
 
-            funcoesAdicionais();
+            FuncoesAdicionais();
 
-            compararDatas();
+            CompararDatas();
 
-            globalizacao();
+            Globalizacao();
 
             TimeZone();
 
             TimeSpan();
+
+            Curiosidades();
         }
 
-        static void funcoesAdicionais()
+        static void FuncoesAdicionais()
         {
             var data = DateTime.Now;
             Console.WriteLine(data.AddDays(12));
@@ -70,7 +72,7 @@ namespace Datas
             Console.WriteLine(data.AddYears(1));
         }
 
-        static void compararDatas()
+        static void CompararDatas()
         {
             var data = DateTime.Now;
 
@@ -85,7 +87,7 @@ namespace Datas
             Console.WriteLine(data);
         }
 
-        static void globalizacao()
+        static void Globalizacao()
         {
             var pt = new System.Globalization.CultureInfo("pt-BR");
             var enUs = new System.Globalization.CultureInfo("en-US");
@@ -142,6 +144,19 @@ namespace Datas
             Console.WriteLine(timeSpanHoraMinutoSegundo - timeSpanDiaHoraMinutoSegundo);
             Console.WriteLine(timeSpanDiaHoraMinutoSegundo.Days);
             Console.WriteLine(timeSpanDiaHoraMinutoSegundo.Add(new System.TimeSpan(12, 0, 0)));
+        }
+
+
+        static void Curiosidades()
+        {
+            Console.WriteLine(DateTime.DaysInMonth(2022, 2));
+            Console.WriteLine(IsWeekend(DateTime.Now.DayOfWeek));
+            Console.WriteLine(DateTime.Now.IsDaylightSavingTime()); //Horário de verão
+        }
+
+        static bool IsWeekend(DayOfWeek today)
+        {
+            return today == DayOfWeek.Saturday || today == DayOfWeek.Sunday;        
         }
     }
 }
