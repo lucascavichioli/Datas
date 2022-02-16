@@ -50,6 +50,98 @@ namespace Datas
             Console.WriteLine(formatada11);
 
 
+            funcoesAdicionais();
+
+            compararDatas();
+
+            globalizacao();
+
+            TimeZone();
+
+            TimeSpan();
+        }
+
+        static void funcoesAdicionais()
+        {
+            var data = DateTime.Now;
+            Console.WriteLine(data.AddDays(12));
+            Console.WriteLine(data.AddDays(-12));
+            Console.WriteLine(data.AddMonths(1));
+            Console.WriteLine(data.AddYears(1));
+        }
+
+        static void compararDatas()
+        {
+            var data = DateTime.Now;
+
+            //DATA NULL
+            //DateTime? data = null;
+
+            if(data.Date == DateTime.Now.Date) 
+            {
+                Console.WriteLine("É igual");
+            }
+            
+            Console.WriteLine(data);
+        }
+
+        static void globalizacao()
+        {
+            var pt = new System.Globalization.CultureInfo("pt-BR");
+            var enUs = new System.Globalization.CultureInfo("en-US");
+            var de = new System.Globalization.CultureInfo("en-DE");
+            var atual = System.Globalization.CultureInfo.CurrentCulture;
+
+            Console.WriteLine(DateTime.Now.ToString("d", enUs));
+            //Console.WriteLine(string.Format("{0:D}", DateTime.Now));
+        }
+
+        static void TimeZone()
+        {
+            var utcDate = DateTime.UtcNow;
+
+            Console.WriteLine(DateTime.Now);
+            Console.WriteLine(utcDate);
+            Console.WriteLine(utcDate.ToLocalTime());
+
+
+            //var timezoneAustralia = TimeZoneInfo.FindSystemTimeZoneById("Pacific/Auckland");
+
+            //var horaAustralia = TimeZoneInfo.ConvertTimeFromUtc(utcDate, timezoneAustralia);
+
+            //Console.WriteLine(horaAustralia);
+
+            var timezones = TimeZoneInfo.GetSystemTimeZones();
+            foreach(var timezone in timezones)
+            {
+                Console.WriteLine(timezone.Id);
+                Console.WriteLine(timezone);
+                Console.WriteLine(TimeZoneInfo.ConvertTimeFromUtc(utcDate, timezone));
+                Console.WriteLine("____________");
+            }
+        }
+
+        static void TimeSpan()
+        {
+            var timeSpan = new TimeSpan();
+            Console.WriteLine(timeSpan);
+
+            var timeSpanNanoSegundos = new TimeSpan(1);
+            Console.WriteLine(timeSpanNanoSegundos);
+
+            var timeSpanHoraMinutoSegundo = new TimeSpan(5, 12, 8);
+            Console.WriteLine(timeSpanHoraMinutoSegundo);
+
+            var timeSpanDiaHoraMinutoSegundo = new TimeSpan(3, 5, 50, 10);
+            Console.WriteLine(timeSpanDiaHoraMinutoSegundo);
+
+            var timeSpanDiaHoraMinutoSegundoMilissegundo = new TimeSpan(15, 12, 55, 8, 100);
+            Console.WriteLine(timeSpanDiaHoraMinutoSegundoMilissegundo);
+
+
+            Console.WriteLine(timeSpanHoraMinutoSegundo - timeSpanDiaHoraMinutoSegundo);
+            Console.WriteLine(timeSpanDiaHoraMinutoSegundo.Days);
+            Console.WriteLine(timeSpanDiaHoraMinutoSegundo.Add(new System.TimeSpan(12, 0, 0)));
         }
     }
 }
